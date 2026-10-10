@@ -1,0 +1,69 @@
+[A] sigma(1/32) = 1/256
+  A1 sinc >= -0.2173 on [1, 1/0.2173]: 161 boxes
+  A2: dist^2 >= [0.0122297 +/- 1.26e-8]  > (1/256)^2 = [1.52588e-5 +/- 1.10e-11]  ratio [801.5 +/- 0.0153]
+  A4: dist^2 >= [3.17876e-5 +/- 8.33e-12]  > (1/256)^2 = [1.52588e-5 +/- 1.10e-11]  ratio [2.083 +/- 2.32e-4]
+  A5: dist^2 >= 0.0468750  > (1/256)^2 = [1.52588e-5 +/- 1.10e-11]  ratio 3.072e+3
+  A6 branch-and-bound: 6462 boxes certified, min certified lower bound of dist^2 = [1.53178e-5 +/- 1.62e-12]  (ratio to target [1.004 +/- 1.33e-4])
+  A1-A6 + straight segment (t,s<=1: dist=(t-s)/8, equality at t-s=1/32)  =>  sigma(1/32) = 1/256
+[B] constant chain
+  sigma = 1/256, rho = min(1/1024, sigma/8) = 1/2048
+  Lip(G) = max(1, 30+7/(4rho)+3808rho, 5+7/(8rho)) = 231415/64 = 3615.859375
+  eps = rho/4 = 1/8192
+  L (2/eps, as in Lean)      = 59242240
+  L (1/eps, Hilbert)         = 29621120
+  kappa = (delta/L)^2: old 7.12323e-17, new 2.84929e-16
+  random test of the Hilbert normalisation inequality: max lhs/rhs = 1.000000000000 (must be <= 1)
+[C] word lengths: exhaustive unit test of (F1),(F2), averages, transports
+  CFP normal form (eq. cfp) verified on 400 random trees (<= 9 carets)
+  m=1: gbar = 7/4 = (3m+4)/4 ok; Mbar' = 10.750 (F2') vs Mbar = 12.500
+  m=1: weight 16; avg N = 29/4 (closed form ok); avg e0 = 7/4 (ok); avg n0 = 6.250 <= 12.250; avg n1 = 6.625 <= 12.500
+  m=2: gbar = 5/2 = (3m+4)/4 ok; Mbar' = 13.958 (F2') vs Mbar = 17.333
+  m=2: weight 192; avg N = 29/3 (closed form ok); avg e0 = 13/8 (ok); avg n0 = 10.625 <= 16.958; avg n1 = 10.271 <= 17.333
+  m=3: gbar = 13/4 = (3m+4)/4 ok; Mbar' = 17.420 (F2') vs Mbar = 22.357
+  m=3: weight 1792; avg N = 341/28 (closed form ok); avg e0 = 25/16 (ok); avg n0 = 15.125 <= 21.920; avg n1 = 14.326 <= 22.357
+  m=4: gbar = 4 = (3m+4)/4 ok; Mbar' = 21.065 (F2') vs Mbar = 27.533
+  m=4: weight 15360; avg N = 443/30 (closed form ok); avg e0 = 49/32 (ok); avg n0 = 19.578 <= 27.065; avg n1 = 18.643 <= 27.533
+  random m=8: 3000 pairs pass (F1),(F2),(F2'); 300 words checked to be transports
+  random m=16: 2000 pairs pass (F1),(F2),(F2'); 100 words checked to be transports
+  random m=24: 2000 pairs pass (F1),(F2),(F2'); 50 words checked to be transports
+  random m=40: 1000 pairs pass (F1),(F2),(F2'); 20 words checked to be transports
+  random m=64: 500 pairs pass (F1),(F2),(F2'); 10 words checked to be transports
+[D] main bounds  h_E(F; x0,x1) >= G(kappa)
+  unconditional, 1/eps (Thm 1.1): m=59 (D=2^59), Mbar=379887635767956078169/1152921504606846974 = 329.5000, h_E >= 2.1091834e-19
+      exact rational bound has 32-digit denominator; safe stated value: h_E > 2.11e-19
+  unconditional, 2/eps (Lean as written): m=61 (D=2^61), Mbar=1570279089274525580875/4611686018427387902 = 340.5000, h_E >= 5.1026133e-20
+      exact rational bound has 32-digit denominator; safe stated value: h_E > 5.10e-20
+  sharpened (F2'), 1/eps: m=59, Mbar'=281.7500, h_E >= 2.4666404e-19  (gain 1.1695)
+  ratio new/old = 4.13354
+  conditional g(k) (k-Lipschitz retraction B -> S of the Hilbert ball):
+    k=   3.00: kappa=   0.0177778  m= 11  Mbar=  65.511  g(k) = 6.04190e-5   [sharp: m=11, 7.36246e-5]
+    k=   4.50: kappa=  0.00467529  m= 13  Mbar=  76.503  g(k) = 1.36841e-5   [sharp: m=13, 1.65506e-5]
+    k=   4.58: kappa=  0.00440430  m= 13  Mbar=  76.503  g(k) = 1.27985e-5   [sharp: m=13, 1.54795e-5]
+    k=   5.00: kappa=  0.00326531  m= 14  Mbar=  82.002  g(k) = 9.21124e-6   [sharp: m=14, 1.11076e-5]
+    k=   6.00: kappa=  0.00173611  m= 15  Mbar=  87.501  g(k) = 4.61164e-6   [sharp: m=15, 5.54663e-6]
+    k=   8.00: kappa= 0.000625000  m= 16  Mbar=  93.000  g(k) = 1.51605e-6   [sharp: m=16, 1.81926e-6]
+    k=  10.00: kappa= 0.000277778  m= 18  Mbar= 104.000  g(k) = 6.31057e-7   [sharp: m=18, 7.54367e-7]
+    k=  15.00: kappa=  6.15148e-5  m= 20  Mbar= 115.000  g(k) = 1.25435e-7   [sharp: m=20, 1.49482e-7]
+    k=  20.00: kappa=  2.06612e-5  m= 22  Mbar= 126.000  g(k) = 3.91022e-8   [sharp: m=22, 4.64799e-8]
+    k=  25.00: kappa=  8.77915e-6  m= 23  Mbar= 131.500  g(k) = 1.57839e-8   [sharp: m=23, 1.87411e-8]
+    k=  28.99: kappa=  4.95588e-6  m= 24  Mbar= 137.000  g(k) = 8.60850e-9   [sharp: m=24, 1.02109e-8]
+    k=  29.00: kappa=  4.94926e-6  m= 24  Mbar= 137.000  g(k) = 8.59643e-9   [sharp: m=24, 1.01966e-8]
+    k=  32.26: kappa=  3.27459e-6  m= 24  Mbar= 137.000  g(k) = 5.54045e-9   [sharp: m=24, 6.57179e-9]
+    k=  33.00: kappa=  2.99844e-6  m= 25  Mbar= 142.500  g(k) = 5.05129e-9   [sharp: m=25, 5.98594e-9]
+    k=  40.00: kappa=  1.41723e-6  m= 26  Mbar= 148.000  g(k) = 2.29329e-9   [sharp: m=26, 2.71526e-9]
+    k=  50.00: kappa=  5.91716e-7  m= 27  Mbar= 153.500  g(k) = 9.15169e-10   [sharp: m=27, 1.08269e-9]
+    k= 100.00: kappa=  3.84468e-8  m= 31  Mbar= 175.500  g(k) = 5.21141e-11   [sharp: m=31, 6.14859e-11]
+[E] framework ceilings / loss ledger / spectral corollary
+  kappa <= 1/16 for every Lipschitz f:B->B (Goebel: delta <= 1-1/L).  Reference-pair ceiling G(1/16) = 0.000251189 at m=9; S-form ceiling kappa/4 <= 1/64
+  ledger (log2):
+    delta^2 = 1/4                        :    -2.000
+    1/eps^2 = (4/rho)^2                  :   -26.000   (rho = 1/2048)
+    1/Lip(G)^2                           :   -23.640   (Lip(G) ~ 7/(4 rho))
+    kappa                                :   -51.640
+    (1-4/(D kappa))/(4(1-1/D))           :    -2.036
+    1/Mbar                               :    -8.364   (Mbar = 329.500, m = 59)
+    h_E                                  :   -62.040
+  unconditional, 1/eps (Thm 1.1): Laplacian bottom of spectrum >= h^2/8 = 5.561e-39; SRW spectral radius <= 1 - h^2/32 = 1 - 1.390e-39
+  unconditional, 2/eps (Lean as written): Laplacian bottom of spectrum >= h^2/8 = 3.255e-40; SRW spectral radius <= 1 - h^2/32 = 1 - 8.136e-41
+  sharpened (F2'), 1/eps: Laplacian bottom of spectrum >= h^2/8 = 7.605e-39; SRW spectral radius <= 1 - h^2/32 = 1 - 1.901e-39
+certificate complete

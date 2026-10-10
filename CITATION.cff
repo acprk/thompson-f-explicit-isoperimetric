@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: >-
+  If you use this note or its computations, please cite it as below.
+  Please also cite the OpenAI preprint listed in UPSTREAM.md.
+type: software
+title: "An explicit isoperimetric constant for Thompson's group F"
+version: 0.1.0
+date-released: '2026-10-10'
+authors:
+  - name: '[AUTHOR NAME]'
+license: Apache-2.0
+abstract: >-
+  OpenAI's preprint proves that Thompson's group F is nonamenable, but gives no
+  explicit isoperimetric constant. Tracking every constant of that argument for
+  the standard generators x0, x1, we prove that the edge-isoperimetric (Cheeger)
+  constant h_E(F) = inf_A (|x0 A - A| + |x1 A - A|)/|A| (symmetric differences)
+  is at least 2.109e-19, and at least 2.466e-19 with a sharper word-length
+  lemma. If the Hilbert unit ball admits a k-Lipschitz retraction onto its
+  sphere, then h_E(F) >= g(k) for an explicit g, with g(29) = 8.596e-9. This is
+  a standard effectivization with no new mechanism; one step is
+  computer-assisted and not formalized, and the result is conditional on the
+  correctness of the upstream preprint. Found and checked by Claude (Anthropic)
+  agents under the repository owner's direction. No human peer review has taken
+  place and nothing here is formalized in Lean.
+keywords:
+  - Thompson's group F
+  - nonamenability
+  - isoperimetric constant
+  - Cheeger constant
+  - explicit bounds
+references:
+  - type: article
+    title: "Thompson's group F is nonamenable"
+    authors:
+      - name: OpenAI
+    repository-code: 'https://github.com/openai/math'
+    commit: fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb
